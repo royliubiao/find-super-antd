@@ -44,25 +44,25 @@ const UpdateFormItem = (item, parentKey, listIndex, fn, itemlistIndex, names) =>
     /** 如果有依赖 */
     if (relyOn) {
         //如果是formList
-        if (relyOn.type === 'formList') {
-            name = [parentKey, ...listIndex, ...relyOn.name]
-            let field = fn(name)
-            // console.log('更新Form表单组件', name, field)
-            if (relyOn.value.includes(field)) {
-                show = true
-            } else {
-                show = false
-            }
-        }
+        // if (relyOn.type === 'formList') {
+        //     name = [parentKey, ...listIndex, ...relyOn.name]
+        //     let field = fn(name)
+        //     // console.log('更新Form表单组件', name, field)
+        //     if (relyOn.value.includes(field)) {
+        //         show = true
+        //     } else {
+        //         show = false
+        //     }
+        // }
         //如果是多嵌套层级
         if (relyOn.layerName) {
             show = canShowLayerItem(names, relyOn, fn)
-
         }
         else {
-            let value = fn(relyOn.name)
-            //如果依赖项的值等于需要值
-            if (relyOn.value.includes(value)) {
+            name = relyOn.type === 'formList' ? [parentKey, ...listIndex, ...relyOn.name] : relyOn.name
+            let field = fn(name)
+            // console.log('更新Form表单组件', name, field)
+            if (relyOn.value.includes(field)) {
                 show = true
             } else {
                 show = false

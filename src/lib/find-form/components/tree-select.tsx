@@ -12,7 +12,7 @@ interface formInput {
 }
 
 const Index: React.FC<formInput> = (props) => {
-  let { antd, useDebouncedCallback, Api } = Packages.use()
+  let { antd, useDebouncedCallback, Api } = Packages.use('find-super-antd')
   let { Form, TreeSelect } = antd
   const { item, listIndex, parentKey }: any = {
     item: {},

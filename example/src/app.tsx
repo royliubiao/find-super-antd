@@ -1,14 +1,14 @@
 import * as React from "react";
 
-import { FindForm } from '../../src/index'
+import { FindForm } from '../../dist/index.js'
 // import { TestComponent, FindForm } from 'find-antd'
 const { useEffect, useState, useCallback } = React;
 
 
-import { hot } from "react-hot-loader";
-
 let App = () => {
-
+    useEffect(() => {
+        console.log('Packages------------', FindForm)
+    }, [])
     const [modal, setModal] = useState({
         formItems: [
             {
@@ -65,7 +65,6 @@ let App = () => {
                 label: '文本框',
                 type: 'textarea',
                 aline: true
-
             },
             {
                 name: 'select',
@@ -103,11 +102,10 @@ let App = () => {
                         value: 2
                     },
                 ]
-
             },
             {
                 name: 'cascader',
-                label: '多选框',
+                label: '联级选框',
                 type: 'cascader',
                 value: '',
                 nameKey: 'name',
@@ -147,7 +145,6 @@ let App = () => {
                     },
                 ],
                 aline: true
-
             },
             {
                 name: 'radio',
@@ -263,7 +260,7 @@ let App = () => {
                         validateType: 'string',
                         placeholder: '规格名',
                         errMessage: "请输入规格名",
-                        disabled: true,
+                        // disabled: true,
                         switchDisabled: {
                             name: 'type',
                             value: 'other',

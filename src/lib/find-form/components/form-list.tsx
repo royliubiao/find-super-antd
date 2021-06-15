@@ -37,7 +37,7 @@ interface formList {
 
 
 const Index: React.FC<formList> = (props) => {
-    let { antd, } = Packages.use()
+    let { antd, } = Packages.use('find-super-antd')
     let { Form, Input, Button, InputNumber, Checkbox, Switch } = antd
     const { item, listIndex, parentValue, readOnly, names }: any = {
         childrenNames: [],

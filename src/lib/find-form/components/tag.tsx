@@ -9,7 +9,7 @@ interface formInput {
   listIndex?: number[]
 }
 const Index: React.FC<formInput> = (props) => {
-  let { antd } = Packages.use()
+  let { antd } = Packages.use('find-super-antd')
   let { Form, Input, Button, InputNumber } = antd
   const { item, listIndex, parentsNames }: any = {
     item: {},

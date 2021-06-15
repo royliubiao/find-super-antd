@@ -25,7 +25,7 @@ const { useEffect, useState, useCallback, useMemo } = React
  * @param {Function | null} onCancel    重设按钮回调
  */
 const Index: React.FC<onlineForm> = (props) => {
-  let { antd, moment, Api, BraftEditor, useDebouncedCallback } = Packages.use()
+  let { antd, moment, Api, BraftEditor, useDebouncedCallback } = Packages.use('find-super-antd')
   let { Form, message } = antd
   const [form] = Form.useForm();
   /** props---------------------------------- */
@@ -851,33 +851,30 @@ const Index: React.FC<onlineForm> = (props) => {
       })
     }
 
-
-
-
-
-    await Api.GetProvinces({}).then(res => {
-      allarea.province = res.data.data
-
-    })
-    //** 如果有默认值 */
-    if (codes.length > 1) {
-      codes[0] && await Api.GetCitys({ code: codes[0] }).then(res => {
-        allarea.city = res.data.data
-        // console.log("如果有城市默认值----------", res.data.data)
-      })
-      // console.log("获取城市", e)
-      codes[1] && await Api.GetDistricts({ code: codes[1] }).then(res => {
-        allarea.district = res.data.data
+    /** 如果有获取地区的接口 */
+    if (Api['GetProvinces']) {
+      await Api.GetProvinces({}).then(res => {
+        allarea.province = res.data.data
 
       })
-    }
-    if (item.valueType === 'arr') {
-      setAreaArr({ ...areaArr, ...allarea })
-    } else {
-      setArea({ ...area, ...allarea })
-    }
+      //** 如果有默认值 */
+      if (codes.length > 1) {
+        codes[0] && await Api.GetCitys({ code: codes[0] }).then(res => {
+          allarea.city = res.data.data
+          // console.log("如果有城市默认值----------", res.data.data)
+        })
+        // console.log("获取城市", e)
+        codes[1] && await Api.GetDistricts({ code: codes[1] }).then(res => {
+          allarea.district = res.data.data
 
-
+        })
+      }
+      if (item.valueType === 'arr') {
+        setAreaArr({ ...areaArr, ...allarea })
+      } else {
+        setArea({ ...area, ...allarea })
+      }
+    }
 
   }
 
@@ -1237,7 +1234,7 @@ const Index: React.FC<onlineForm> = (props) => {
                 let field = infos[item.name] ? infos[item.name] : (infos[item.name] === '' || infos[item.name] === 0 || infos[item.name] === false) ? infos[item.name] : (item.type === 'textarea' || item.type === 'input' || item.type === 'phone' || item.type === 'number' || item.type === 'radio' || item.type === 'treeselect' || item.type === 'select') ? null : []
                 // console.log('如果是有些字段不能赋值', infos, item, field)
                 /** 如果详情是空值 但自身有值 */
-                if (!field && item.value) {
+                if (field == null && item.value) {
                   field = item.value
                 }
                 fields.push({
@@ -1248,7 +1245,7 @@ const Index: React.FC<onlineForm> = (props) => {
                 if (!item.noValue) {
                   let field = infos[item.name] ? infos[item.name] : (infos[item.name] === '' || infos[item.name] === 0 || infos[item.name] === false) ? infos[item.name] : (item.type === 'textarea' || item.type === 'input' || item.type === 'phone' || item.type === 'number' || item.type === 'radio' || item.type === 'treeselect' || item.type === 'select') ? null : []
                   /** 如果详情是控制 但自身有值 */
-                  if (!field && item.value) {
+                  if (field == null && item.value) {
                     field = item.value
                   }
 

@@ -48,7 +48,7 @@ type CreateForm = onlineForm & {
     itemvisibles: { [name: string]: boolean }
 }
 const Index = (props) => {
-    let { antd } = Packages.use()
+    let { antd } = Packages.use('find-super-antd')
     let {
         Form,
         Button,
@@ -136,19 +136,19 @@ const Index = (props) => {
                                     //   ${item.hidden && 'item_hidden'}
                                     // `}
                                     // span={item.type === 'toptitle' ? 24 : 12}
-                                    key={index}
+                                    key={item.name + index}
                                     sm={item.hidden ? 0 : 24}
                                     xl={item.hidden ? 0 : (item.type === 'toptitle' || item.aline || aline) ? 24 : 12}
                                     xxl={item.hidden ? 0 : (item.type === 'toptitle' || item.aline || aline) ? 24 : isModal ? 12 : 6}
                                 >
                                     {/* input */}
                                     {item.type === 'input' && <FormInput item={item}></FormInput>}
+                                    {/*  数字*/}
+                                    {item.type === 'number' && <FormNumber item={item}></FormNumber>}
                                     {/* password */}
                                     {item.type === 'password' && <FormPassWord item={item}></FormPassWord>}
                                     {/* 确认密码 */}
                                     {item.type === 'confirm' && <ConfirmFormPassWord item={item}></ConfirmFormPassWord>}
-                                    {/*  数字*/}
-                                    {item.type === 'number' && <FormNumber item={item}></FormNumber>}
                                     {/* 标签 */}
                                     {item.type === 'tag' && <FormTag item={item}></FormTag>}
                                     {/*  电话 */}
@@ -157,12 +157,12 @@ const Index = (props) => {
                                     {item.type === 'textarea' && <FormTextArea item={item}></FormTextArea>}
                                     {/* 下拉选择框 */}
                                     {item.type === 'select' && <FormSelect item={item}></FormSelect>}
-                                    {/* 地区选择 */}
-                                    {item.type === 'area' && <FormArea areaArr={areaArr} item={item} data={area} onChange={AreaChange}></FormArea>}
                                     {/* 下拉选择框 多选择框*/}
                                     {item.type === 'multiple' && <FormMultiple item={item}></FormMultiple>}
                                     {/* 联级选择框 */}
                                     {item.type === 'cascader' && <FormCascader item={item}></FormCascader>}
+                                    {/* 地区选择 */}
+                                    {item.type === 'area' && <FormArea areaArr={areaArr} item={item} data={area} onChange={AreaChange}></FormArea>}
                                     {/* 单选 */}
                                     {item.type === 'radio' && <FormRadio item={item}></FormRadio>}
                                     {/* 多选 */}
@@ -215,3 +215,9 @@ const Index = (props) => {
     )
 }
 export default memo(Index);
+
+
+
+
+
+

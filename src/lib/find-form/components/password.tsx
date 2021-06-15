@@ -4,7 +4,7 @@ const { useEffect, useState } = React
 
 
 const Index = (props) => {
-  let { antd } = Packages.use()
+  let { antd } = Packages.use('find-super-antd')
   let { Form, Input } = antd
   const { item}: any = {
     item: {},

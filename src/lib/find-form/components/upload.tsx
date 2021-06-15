@@ -10,7 +10,7 @@ interface upload {
 }
 const Index: React.FC<upload> = (props) => {
   const UploadRef = useRef(null)
-  let { antd, Api } = Packages.use()
+  let { antd, Api, GetPrivateToken, GetToken } = Packages.use('find-super-antd')
   let { Form, Upload, Modal, message } = antd
   const { item, listIndex }: any = {
     item: {},
@@ -161,7 +161,12 @@ const Index: React.FC<upload> = (props) => {
       fileName: detail.file.name
     }
 
-    let apiName = item.filePrivateName ? 'GetPrivateToken' : 'GetToken'
+
+    if (!GetToken) {
+      return
+    }
+
+    let apiName = item.filePrivateName ? GetPrivateToken : GetToken
     let fileType = detail.file.name.substring(detail.file.name.lastIndexOf(".") + 1);
     console.log('图片上传------------', name)
 
@@ -174,7 +179,7 @@ const Index: React.FC<upload> = (props) => {
       }
     }
 
-    Api[apiName](param).then((file: any) => {
+    Api[apiName] && Api[apiName](param).then((file: any) => {
       console.log(file.data.data, 'token')
       let data = new FormData()
       data.append('token', file.data.data.token)

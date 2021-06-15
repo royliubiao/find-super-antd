@@ -10,7 +10,7 @@ interface formInput {
   listIndex?: any[]
 }
 const Index: React.FC<formInput> = (props) => {
-  let { antd, BraftEditor, Api, UploadUrl } = Packages.use()
+  let { antd, BraftEditor, Api, UploadUrl } = Packages.use('find-super-antd')
   let { Form } = antd
   const { item, listIndex }: any = {
     item: {},

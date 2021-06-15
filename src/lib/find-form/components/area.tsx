@@ -4,8 +4,8 @@ import { NoValue } from '../../../utils/global-variable'
 const { useEffect, useState } = React
 
 
-const Index= (props) => {
-  let { antd } = Packages.use()
+const Index = (props) => {
+  let { antd } = Packages.use('find-super-antd')
   let { Form, Select } = antd
   const { Option } = Select
   const { item, onChange, data, form, areaArr }: any = {

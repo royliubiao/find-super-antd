@@ -44,17 +44,20 @@ import {
     Rate
 } from 'antd';
 import BraftEditor from 'braft-editor';
+import 'braft-editor/dist/index.css';
 import { useDebouncedCallback } from 'use-debounce';
 import zhCN from 'antd/es/locale/zh_CN';
 import './app.scss';
-import Packages from '../../src/index'
+import { Packages } from '../../dist/index'
 // import Packages from 'find-antd'
 const { useEffect, useState, useCallback } = React;
 const rootElement = document.getElementById('main')
 
 let Api = {};
 
-Packages.bind({
+// console.log('Packages', Packages)
+
+Packages.bind('find-super-antd', {
     antd: {
         Input,
         Form,
@@ -79,7 +82,9 @@ Packages.bind({
     moment,
     Api,
     useDebouncedCallback,
-    UploadUrl: 'https://up.qiniup.com'
+    UploadUrl: 'https://up.qiniup.com',
+    // GetPrivateToken: 'xxxxx',
+    // GetToken: 'xxxxx',
 })
 
 // }

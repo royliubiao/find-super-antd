@@ -23,7 +23,6 @@ module.exports = {
         path: join(__dirname, '../dist'),
         library: 'find-antd',
         libraryTarget: 'umd',
-        publicPath: '1'
     },
 
     // output: {

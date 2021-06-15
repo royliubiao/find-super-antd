@@ -90,11 +90,11 @@ const webpackBaseConfig = {
     },
     optimization: {
         minimize: _modeflag ? true : false,
-        runtimeChunk: {
-            name: "runtime"
-        },
+        // runtimeChunk: {
+        //     name: "runtime"
+        // },
     },
-    //别名
+    // 别名
     resolve: {
         alias: {
             "@/assets": resolve(__dirname, 'src/assets'),
@@ -124,9 +124,9 @@ const webpackBaseConfig = {
         }),
 
     ],
-    watchOptions: {
-        ignored: /dist/,
-    },
+    // watchOptions: {
+    //     ignored: /dist/,
+    // },
 
 
 }
